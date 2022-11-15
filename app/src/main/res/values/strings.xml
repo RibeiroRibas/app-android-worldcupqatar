@@ -2,7 +2,6 @@
     <string name="app_name">World Cup Qatar</string>
     <string name="show_more">Show more</string>
     <string name="show_less">Show less</string>
-    <string name="matches_not_found">Nenhum jogo agendado!</string>
     <string name="format_dd">dd</string>
     <string name="format_E">E</string>
     <string name="format_MMMM">MMMM</string>
@@ -18,4 +17,5 @@
     <string name="final_match">Partida Final da Copa Qatar 2022</string>
     <string name="all_finals_of_world_cup">Classificação das finais das Copas!</string>
     <string name="ranking">Ranking - Os Melhores Do Mundo!</string>
+    <string name="matches_not_found">Nesse dia não tem jogo! :(\nAproveita e avalia o app na Play Store! :D</string>
 </resources>

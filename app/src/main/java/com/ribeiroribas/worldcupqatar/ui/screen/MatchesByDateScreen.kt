@@ -58,7 +58,7 @@ fun MatchesByDateScreen() {
                 if (matchesByDateState.data.matchAndTeamsPerformance.isNotEmpty()) {
                     MatchesColumn(matchesByDateUiState = matchesByDateState.data)
                 } else {
-                    Message(message = "Nesse dia não tem jogo! :(\nAproveita e avalia o app na Play Store! :D")
+                    Message(message = stringResource(id = R.string.matches_not_found))
                 }
             is AppUiState.Error -> Message(message = matchesByDateState.message)
         }
