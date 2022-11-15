@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ribeiroribas.worldcupqatar.model.Match
 import com.ribeiroribas.worldcupqatar.model.TeamRanking
-import com.ribeiroribas.worldcupqatar.model.WorldCupFinals
+import com.ribeiroribas.worldcupqatar.model.WorldCupRanking
 import com.ribeiroribas.worldcupqatar.repository.WorldCupDataRepository
 import com.ribeiroribas.worldcupqatar.repository.WorldCupQatarRepository
 import com.ribeiroribas.worldcupqatar.ui.state.AppUiState
@@ -78,7 +78,7 @@ class RecebaViewModel @Inject constructor(
     }
 
 
-    private fun MutableList<WorldCupFinals>.convertToWorldCupFinalsTable(): List<List<TableValues>> {
+    private fun MutableList<WorldCupRanking>.convertToWorldCupFinalsTable(): List<List<TableValues>> {
 
         val valuesList: MutableList<List<String>> = mutableListOf()
         this.forEach {

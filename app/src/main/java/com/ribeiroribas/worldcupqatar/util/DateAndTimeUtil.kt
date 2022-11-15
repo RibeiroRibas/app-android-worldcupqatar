@@ -6,8 +6,8 @@ import java.time.format.DateTimeFormatter
 
 fun getEventDates(): MutableList<LocalDate> {
     val eventDates: MutableList<LocalDate> = arrayListOf()
-    val finalEventDate = LocalDate.of(2022, 12, 19)
     var eventDate = LocalDate.of(2022, 11, 20)
+    val finalEventDate = LocalDate.of(2022, 12, 19)
     do {
         eventDates.add(eventDate)
         eventDate = eventDate.plusDays(1)

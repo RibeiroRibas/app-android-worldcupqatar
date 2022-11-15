@@ -9,6 +9,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -48,21 +49,21 @@ fun Table(tableValues: List<List<TableValues>>) {
 private fun TableCell(
     text: String,
     cellColor: Color,
-    textAlign: TextAlign = TextAlign.Center,
     modifier: Modifier
 ) {
     Surface(
-        modifier = modifier.heightIn(30.dp),
+        modifier = modifier
+            .heightIn(30.dp),
         color = cellColor
     ) {
         val context = LocalContext.current
         Text(
             text = text,
-            textAlign = textAlign,
+            textAlign = TextAlign.Center,
             style = MaterialTheme.typography.body2,
             overflow = TextOverflow.Ellipsis,
             modifier = Modifier
-                .padding(1.dp)
+                .padding(all = 1.dp)
                 .clickable {
                     showToast(
                         context = context,

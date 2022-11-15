@@ -19,6 +19,7 @@ import com.ribeiroribas.worldcupqatar.R
 import com.ribeiroribas.worldcupqatar.model.Match
 import com.ribeiroribas.worldcupqatar.ui.component.*
 import com.ribeiroribas.worldcupqatar.ui.state.AppUiState
+import com.ribeiroribas.worldcupqatar.ui.state.TableValues
 import com.ribeiroribas.worldcupqatar.ui.viewmodel.RecebaViewModel
 
 @Composable
@@ -37,52 +38,29 @@ fun RecebaScreen(recebaViewModel: RecebaViewModel = hiltViewModel()) {
             is AppUiState.Loaded -> FinalMatchLayout(finalMatchUiState.data)
             is AppUiState.Error -> Message(message = finalMatchUiState.message)
         }
-        Card(
-            modifier = Modifier.padding(8.dp),
-            border = BorderStroke(2.dp, Color.White),
-            backgroundColor = MaterialTheme.colors.background
-        ) {
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier.padding(bottom = 8.dp)
-            ) {
-                Text(
-                    style = MaterialTheme.typography.h6,
-                    text = stringResource(id = R.string.ranking),
-                    modifier = Modifier.padding(top = 8.dp)
-                )
-                when (val tableRankingUiState =
-                    recebaViewModel.tableRankingUiState.collectAsState().value) {
-                    is AppUiState.Empty -> {}
-                    is AppUiState.Loading -> CircularProgress()
-                    is AppUiState.Loaded -> Table(tableRankingUiState.data)
-                    is AppUiState.Error -> Message(message = tableRankingUiState.message)
-                }
-            }
+
+        when (val tableRankingUiState =
+            recebaViewModel.tableRankingUiState.collectAsState().value) {
+            is AppUiState.Empty -> {}
+            is AppUiState.Loading -> CircularProgress()
+            is AppUiState.Loaded -> TableCardLayout(
+                tableValues = tableRankingUiState.data,
+                title = stringResource(id = R.string.ranking)
+            )
+            is AppUiState.Error -> Message(message = tableRankingUiState.message)
         }
-        Card(
-            modifier = Modifier.padding(8.dp),
-            border = BorderStroke(2.dp, Color.White),
-            backgroundColor = MaterialTheme.colors.background
-        ) {
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier.padding(bottom = 8.dp)
-            ) {
-                Text(
-                    style = MaterialTheme.typography.h6,
-                    text = stringResource(id = R.string.all_finals_of_world_cup),
-                    modifier = Modifier.padding(top = 8.dp)
-                )
-                when (val tableWorldCupFinalsUiState =
-                    recebaViewModel.tableWorldCupFinalsUiState.collectAsState().value) {
-                    is AppUiState.Empty -> {}
-                    is AppUiState.Loading -> CircularProgress()
-                    is AppUiState.Loaded -> Table(tableWorldCupFinalsUiState.data)
-                    is AppUiState.Error -> Message(message = tableWorldCupFinalsUiState.message)
-                }
-            }
+
+        when (val tableWorldCupFinalsUiState =
+            recebaViewModel.tableWorldCupFinalsUiState.collectAsState().value) {
+            is AppUiState.Empty -> {}
+            is AppUiState.Loading -> CircularProgress()
+            is AppUiState.Loaded -> TableCardLayout(
+                tableValues = tableWorldCupFinalsUiState.data,
+                title = stringResource(id = R.string.all_finals_of_world_cup)
+            )
+            is AppUiState.Error -> Message(message = tableWorldCupFinalsUiState.message)
         }
+
     }
 }
 
@@ -96,13 +74,13 @@ fun FinalMatchLayout(match: Match) {
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier.padding(bottom = 8.dp)
         ) {
-            Text(
-                style = MaterialTheme.typography.h6,
-                modifier = Modifier.padding(top = 8.dp),
-                text = stringResource(id = R.string.final_match)
-            )
+
+            Title(text = stringResource(id = R.string.final_match))
+
             Spacer(modifier = Modifier.height(8.dp))
-            MatchInfo(getValues(match = match))
+
+            MatchInfo(match = match)
+
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -110,11 +88,33 @@ fun FinalMatchLayout(match: Match) {
                 horizontalArrangement = Arrangement.SpaceAround,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                TeamMatchElement(
+                TeamMatchLayout(
                     match = match,
                     modifier = Modifier.weight(1f)
                 )
             }
+        }
+    }
+}
+
+@Composable
+fun TableCardLayout(
+    tableValues: List<List<TableValues>>,
+    title: String
+) {
+    Card(
+        modifier = Modifier.padding(8.dp),
+        border = BorderStroke(2.dp, Color.White),
+        backgroundColor = MaterialTheme.colors.background
+    ) {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.padding(bottom = 8.dp)
+        ) {
+
+            Title(text = title)
+
+            Table(tableValues = tableValues)
         }
     }
 }

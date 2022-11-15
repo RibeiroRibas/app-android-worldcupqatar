@@ -64,14 +64,19 @@ class MatchesByDateViewModel @Inject constructor(
                 matchesByDateUiState.stage = matchesByDate.stage
 
                 matchesByDate.matches.forEach { matchByDate ->
+
                     val matchAndTeamsPerformance = MatchAndTeamsPerformance()
+
                     matchAndTeamsPerformance.match = matchByDate.match
-                    getPerformanceInWorldCup(matchByDate) {
-                        matchAndTeamsPerformance.teamsPerformance.add(it)
+
+                    getPerformanceInWorldCup(matchByDate) { teamPerformance ->
+                        matchAndTeamsPerformance.teamsPerformance.add(teamPerformance)
                     }
-                    getPerformanceInQualifier(matchByDate.match) {
-                        matchAndTeamsPerformance.teamsPerformance.add(it)
+
+                    getPerformanceInQualifier(matchByDate.match) { teamPerformance ->
+                        matchAndTeamsPerformance.teamsPerformance.add(teamPerformance)
                     }
+
                     matchesByDateUiState.matchAndTeamsPerformance.add(matchAndTeamsPerformance)
                 }
 
@@ -92,12 +97,11 @@ class MatchesByDateViewModel @Inject constructor(
         teamPerformance: (TeamPerformance) -> Unit
     ) {
         worldCupDataRepository.getMatchesQualifierByTeamName(
-            teamName1 = match.team1,
-            teamName2 = match.team2
+            teamNames = listOf(match.team1, match.team2)
         ).catch { error ->
             _matchesByDateUiState.value = AppUiState.Error(error.message.toString())
         }.collect { matchesByTeamName ->
-            getTeamPerformance(matches = matchesByTeamName) { teamPerformance(it) }
+            getTeamPerformance(mapMatchesByName = matchesByTeamName) { teamPerformance(it) }
         }
     }
 
@@ -109,21 +113,17 @@ class MatchesByDateViewModel @Inject constructor(
         matchesByTeamName[matchByDate.match.team1] = matchByDate.matchesTeam1
         matchesByTeamName[matchByDate.match.team2] = matchByDate.matchesTeam2
 
-        getTeamPerformance(matches = matchesByTeamName) {
-            for (match in it.teamsMatches) {
-                it.teamsMatches[it.teamsMatches.indexOf(match)] = match.drop(1).toMutableList()
-            }
-            teamPerformance(it)
-        }
+        getTeamPerformance(mapMatchesByName = matchesByTeamName) { teamPerformance(it) }
     }
 
     private fun getTeamPerformance(
-        matches: Map<String, List<Match>>,
+        mapMatchesByName: Map<String, List<Match>>,
         teamPerformance: (TeamPerformance) -> Unit
     ) {
         val teamPerformanceObj = TeamPerformance()
         val teamScoreMutableList: MutableList<TeamScore> = mutableListOf()
-        matches.forEach { (teamName, matches) ->
+
+        mapMatchesByName.forEach { (teamName, matches) ->
 
             val teamScore = TeamScore(
                 teamName = teamName,
@@ -132,9 +132,9 @@ class MatchesByDateViewModel @Inject constructor(
             teamScoreMutableList.add(teamScore)
 
             teamPerformanceObj.teamsMatches.add(
-                matches
-                    .sortedBy { it.date }.toMutableList()
+                matches.sortedBy { it.date }.drop(1).toMutableList()
             )
+
         }
 
         teamPerformanceObj.tableValues = teamScoreMutableList

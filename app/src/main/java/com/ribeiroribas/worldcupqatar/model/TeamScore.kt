@@ -21,8 +21,8 @@ class TeamScore(
         this.teamName = teamName
         matches.forEach { match ->
             setMatchResult(matchResult = match.getMatchResult(teamName))
-            setGoalScored(score = match.getGs(teamName))
-            setGoalConceded(conceded = match.getGc(teamName))
+            setGoalScored(score = match.getGoalsScored(teamName))
+            setGoalConceded(conceded = match.getGoalsConceded(teamName))
         }
         calculateGoalDifference()
         calculatePercentage()

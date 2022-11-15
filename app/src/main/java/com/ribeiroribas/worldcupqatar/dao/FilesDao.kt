@@ -2,14 +2,14 @@ package com.ribeiroribas.worldcupqatar.dao
 
 import com.ribeiroribas.worldcupqatar.model.Match
 import com.ribeiroribas.worldcupqatar.model.TeamRanking
-import com.ribeiroribas.worldcupqatar.model.WorldCupFinals
+import com.ribeiroribas.worldcupqatar.model.WorldCupRanking
 
 interface FilesDao {
 
     suspend fun getMatchesQualifier(): List<Match>
 
-    suspend fun getRanking(): List<TeamRanking>
+    suspend fun getTeamsRanking(): List<TeamRanking>
 
-    suspend fun getWorldCupFinals(): List<WorldCupFinals>
+    suspend fun getWorldCupFinals(): List<WorldCupRanking>
 
 }

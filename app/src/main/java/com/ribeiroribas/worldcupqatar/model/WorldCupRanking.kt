@@ -1,6 +1,6 @@
 package com.ribeiroribas.worldcupqatar.model
 
-data class WorldCupFinals(
+data class WorldCupRanking(
     val year: String = "",
     val champion: String = "",
     val vice: String = "",

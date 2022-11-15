@@ -42,7 +42,7 @@ data class Match(
         return null
     }
 
-    fun getGs(teamName: String): Int? {
+    fun getGoalsScored(teamName: String): Int? {
         scoreTeam1?.let { score1 ->
             scoreTeam2?.let { score2 ->
                 if(team1 == teamName) return score1
@@ -52,7 +52,7 @@ data class Match(
         return null
     }
 
-    fun getGc(teamName: String): Int? {
+    fun getGoalsConceded(teamName: String): Int? {
         scoreTeam1?.let { score1 ->
             scoreTeam2?.let { score2 ->
                 if(team1 == teamName) return score2

@@ -6,14 +6,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-
 import com.ribeiroribas.worldcupqatar.ui.component.*
 import com.ribeiroribas.worldcupqatar.ui.state.AppUiState
 import com.ribeiroribas.worldcupqatar.ui.state.GroupStageUiState
@@ -38,15 +36,12 @@ fun GroupStageScreen(
 }
 
 @Composable
-fun GroupStageLayout(
-    modifier: Modifier = Modifier,
-    groupStageUiState: List<GroupStageUiState>,
-) {
+private fun GroupStageLayout(groupStageUiState: List<GroupStageUiState> ) {
     LazyColumn {
         groupStageUiState.forEach { groupStage ->
             item {
                 Card(
-                    modifier = modifier.padding(8.dp),
+                    modifier = Modifier.padding(8.dp),
                     border = BorderStroke(3.dp, getColorByGroup(groupStage.group)),
                     backgroundColor = MaterialTheme.colors.background
                 ) {
@@ -54,15 +49,12 @@ fun GroupStageLayout(
                         horizontalAlignment = Alignment.CenterHorizontally,
                         modifier = Modifier.padding(bottom = 8.dp)
                     ) {
-                        Text(
-                            style = MaterialTheme.typography.h6,
-                            text = groupStage.group.uppercase(),
-                            modifier = modifier.padding(top = 8.dp)
-                        )
+
+                        Title(text = groupStage.group.uppercase())
 
                         Table(tableValues = groupStage.tableValuesList)
 
-                        TeamMatchesRow(matches = groupStage.matches)
+                        TeamMatchesLazyRow(matches = groupStage.matches)
                     }
                 }
             }

@@ -44,7 +44,7 @@ fun WorldCupQatarApp(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun WorldCupAppBar() {
+private fun WorldCupAppBar() {
     TopAppBar(
         navigationIcon = {
             Image(
@@ -70,9 +70,7 @@ fun WorldCupAppBar() {
 
 
 @Composable
-fun AppBottomNavigation(
-    navController: NavHostController
-) {
+private fun AppBottomNavigation(navController: NavHostController) {
     val items = listOf(
         Screens.Matches,
         Screens.Groups,

@@ -40,7 +40,7 @@ fun MatchesByDateScreen() {
             text = matchesByDateViewModel.month.uppercase(),
             modifier = Modifier.padding(top = 8.dp)
         )
-        MatchDayRow(
+        MatchDayLazyRow(
             selectedDate = matchesByDateViewModel.selectedDate,
             onMonthChanged = { matchesByDateViewModel.updateMonth(it) },
             onDayClick = {
@@ -62,16 +62,14 @@ fun MatchesByDateScreen() {
 }
 
 @Composable
-fun MatchDayRow(
-    modifier: Modifier = Modifier,
+fun MatchDayLazyRow(
     selectedDate: LocalDate,
     onMonthChanged: (String) -> Unit,
     onDayClick: (LocalDate) -> Unit,
 ) {
     LazyRow(
         horizontalArrangement = Arrangement.spacedBy(8.dp),
-        contentPadding = PaddingValues(horizontal = 16.dp),
-        modifier = modifier
+        contentPadding = PaddingValues(horizontal = 16.dp)
     ) {
         items(getEventDates()) { date ->
             onMonthChanged(date.format(DateTimeFormatter.ofPattern(stringResource(id = R.string.format_MMMM))))
@@ -88,9 +86,8 @@ fun MatchDayRow(
 fun MatchDateElement(
     selectedDate: LocalDate,
     eventDate: LocalDate,
-    onDayClick: (LocalDate) -> Unit,
-
-    ) {
+    onDayClick: (LocalDate) -> Unit
+) {
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
         OutlinedButton(
             onClick = {
@@ -98,8 +95,7 @@ fun MatchDateElement(
             },
             modifier = Modifier
                 .padding(4.dp)
-                .heightIn(50.dp)
-                .widthIn(50.dp),
+                .sizeIn(50.dp),
             border = BorderStroke(1.dp, Color.White),
             shape = MaterialTheme.shapes.large,
             colors =
@@ -127,15 +123,12 @@ fun MatchDateElement(
 }
 
 @Composable
-private fun MatchesColumn(
-    matchesByDateUiState: MatchesByDateUiState,
-    modifier: Modifier = Modifier
-) {
-    Text(
-        style = MaterialTheme.typography.h6,
-        text = matchesByDateUiState.stage,
-        modifier = modifier.padding(top = 12.dp)
-    )
+private fun MatchesColumn(matchesByDateUiState: MatchesByDateUiState) {
+
+    Spacer(modifier = Modifier.padding(top = 4.dp))
+
+    Title(text = matchesByDateUiState.stage)
+
     matchesByDateUiState.matchAndTeamsPerformance.forEach { matchAndTeamsPerformance ->
         Column {
             MatchCardElement(
@@ -169,17 +162,22 @@ fun ColumnScope.MatchCardElement(
             modifier = Modifier
                 .weight(1f)
         ) {
-            MatchInfo(getValues(match = match))
+
+            MatchInfo(match = match)
+
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceAround,
                 verticalAlignment = Alignment.CenterVertically
             ) {
+
                 Spacer(modifier = Modifier.padding(4.dp))
-                TeamMatchElement(
+
+                TeamMatchLayout(
                     match = match,
                     modifier = Modifier.weight(1f)
                 )
+
                 IconButton(onClick = { expanded = !expanded }) {
                     Icon(
                         imageVector = if (expanded) {
@@ -204,12 +202,15 @@ fun ColumnScope.MatchCardElement(
 
 @Composable
 private fun TeamPerformance(teamsPerformance: List<TeamPerformance>) {
-    teamsPerformance.forEach { teamPerformance ->
+
+    teamsPerformance.forEachIndexed { index, teamPerformance ->
+
         Divider(color = Color.White)
+
         Column(modifier = Modifier.padding(top = 4.dp)) {
             Text(
                 text = stringResource(
-                    id = if (teamsPerformance.indexOf(teamPerformance) == 0) {
+                    id = if (index == 0) {
                         R.string.world_cup_performance
                     } else {
                         R.string.qualifier_performance
@@ -221,7 +222,7 @@ private fun TeamPerformance(teamsPerformance: List<TeamPerformance>) {
             Table(tableValues = teamPerformance.tableValues)
 
             teamPerformance.teamsMatches.forEach { teamMatches ->
-                TeamMatchesRow(matches = teamMatches)
+                TeamMatchesLazyRow(matches = teamMatches)
             }
         }
         Spacer(modifier = Modifier.height(8.dp))

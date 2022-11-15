@@ -10,8 +10,8 @@ import com.ribeiroribas.worldcupqatar.util.Constants.GROUP_F
 import com.ribeiroribas.worldcupqatar.util.Constants.GROUP_G
 import com.ribeiroribas.worldcupqatar.util.Constants.GROUP_H
 
-val RedSecondaryMedium = Color(0xFF680021)
-val RedSecondaryDark = Color(0xFF3b0000)
+val RedMedium = Color(0xFF680021)
+val RedDark = Color(0xFF3b0000)
 
 val GroupA = Color(0xFF4a0072)
 val GroupB = Color(0xFF007c91)
@@ -33,5 +33,5 @@ fun getColorByGroup(group: String?): Color {
         if (group == GROUP_G) return GroupG
         if (group == GROUP_H) return GroupH
     }
-    return RedSecondaryDark
+    return RedDark
 }
