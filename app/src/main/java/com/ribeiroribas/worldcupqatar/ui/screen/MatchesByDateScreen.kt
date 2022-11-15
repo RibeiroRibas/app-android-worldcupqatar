@@ -54,8 +54,12 @@ fun MatchesByDateScreen() {
 
             is AppUiState.Loading -> CircularProgress()
 
-            is AppUiState.Loaded -> MatchesColumn(matchesByDateUiState = matchesByDateState.data)
-
+            is AppUiState.Loaded ->
+                if (matchesByDateState.data.matchAndTeamsPerformance.isNotEmpty()) {
+                    MatchesColumn(matchesByDateUiState = matchesByDateState.data)
+                } else {
+                    Message(message = "Nesse dia não tem jogo! :(\nAproveita e avalia o app na Play Store! :D")
+                }
             is AppUiState.Error -> Message(message = matchesByDateState.message)
         }
     }
@@ -95,7 +99,8 @@ fun MatchDateElement(
             },
             modifier = Modifier
                 .padding(4.dp)
-                .sizeIn(50.dp),
+                .heightIn(50.dp)
+                .widthIn(50.dp),
             border = BorderStroke(1.dp, Color.White),
             shape = MaterialTheme.shapes.large,
             colors =
