@@ -10,6 +10,10 @@
 Aplicativo Android da Copa do Mundo Qatar 2022 e das Eliminatórias 2022
 # Objetivo
 Aplicar meus estudos sobre Jetpack Compose - kit de ferramentas moderno recomendado pelo Android para criar IUs nativas. Como o clima é de copa criei esse app pra mostrar os resultados das partidas e outras funcionalidades.
+
+<img src="https://user-images.githubusercontent.com/96504657/202573994-88e4fbec-9422-4a03-aa82-06ebd22e8d3e.gif" width="25%" height="25%"/>---
+<img src="https://user-images.githubusercontent.com/96504657/202574852-f6547288-9864-470a-9bae-6e63873f3674.gif" width="25%" height="25%"/>
+
 # :hammer: Funcionalidades
 1. - `Funcionalidade 1`: Listas os jogos da copa do mundo pela data selecionada.
 2. - `Funcionalidade 1.1`: Mostrar informações sobre o jogo como data hora e resultado.
@@ -20,9 +24,6 @@ Aplicar meus estudos sobre Jetpack Compose - kit de ferramentas moderno recomend
 6. - `Funcionalidade 3.1`: Mostrar uma tabela com o histórico de ganhadores de todas as copas
 6. - `Funcionalidade 3.2`: Mostrar uma tabela com o histórico das 4 primeiras posições de todas as copas.
 7. - `PLUS`: Cada equipe participante da copa tem sua respectiva cor que foi baseada no album de figurinhas oficial da pannini.
-
-<img src="https://user-images.githubusercontent.com/96504657/202573994-88e4fbec-9422-4a03-aa82-06ebd22e8d3e.gif" width="25%" height="25%"/>---
-<img src="https://user-images.githubusercontent.com/96504657/202574852-f6547288-9864-470a-9bae-6e63873f3674.gif" width="25%" height="25%"/>
 
 # :scroll: Características
 
