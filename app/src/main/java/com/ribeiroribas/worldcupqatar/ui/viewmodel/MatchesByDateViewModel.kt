@@ -132,7 +132,7 @@ class MatchesByDateViewModel @Inject constructor(
             teamScoreMutableList.add(teamScore)
 
             teamPerformanceObj.teamsMatches.add(
-                matches.sortedBy { it.date }.drop(1).toMutableList()
+                matches.sortedBy { it.date }.toMutableList()
             )
 
         }

@@ -3,7 +3,7 @@ package com.ribeiroribas.worldcupqatar.ui.screen
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
@@ -75,7 +75,7 @@ fun MatchDayLazyRow(
         horizontalArrangement = Arrangement.spacedBy(8.dp),
         contentPadding = PaddingValues(horizontal = 16.dp)
     ) {
-        items(getEventDates()) { date ->
+        itemsIndexed(getEventDates()) { position,date ->
             onMonthChanged(date.format(DateTimeFormatter.ofPattern(stringResource(id = R.string.format_MMMM))))
             MatchDateElement(
                 selectedDate = selectedDate,

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">World Cup Qatar</string>
+    <string name="app_name">Copa do Héxa 2022</string>
     <string name="show_more">Show more</string>
     <string name="show_less">Show less</string>
     <string name="format_dd">dd</string>
@@ -14,7 +14,8 @@
     <string name="receba">RECEBA</string>
     <string name="groups">GRUPOS</string>
     <string name="empty_string"> </string>
-    <string name="final_match">Partida Final da Copa Qatar 2022</string>
+    <string name="final_match">Partida Final</string>
+    <string name="world_cup">"Copa do Héxa 2022"</string>
     <string name="all_finals_of_world_cup">Classificação das finais das Copas!</string>
     <string name="ranking">Ranking - Os Melhores Do Mundo!</string>
     <string name="matches_not_found">Nesse dia não tem jogo! :(\nAproveita e avalia o app na Play Store! :D</string>

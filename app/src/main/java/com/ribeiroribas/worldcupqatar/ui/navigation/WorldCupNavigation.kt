@@ -48,7 +48,7 @@ private fun WorldCupAppBar() {
     TopAppBar(
         navigationIcon = {
             Image(
-                painter = painterResource(id = R.drawable.cup),
+                painter = painterResource(id = R.drawable.the_best_of_the_world),
                 contentDescription = null,
                 modifier = Modifier
                     .padding(4.dp)
@@ -56,13 +56,7 @@ private fun WorldCupAppBar() {
             )
         },
         title = {
-            Image(
-                painter = painterResource(id = R.drawable.worldcupcatar),
-                contentDescription = null,
-                modifier = Modifier
-                    .padding(vertical = 4.dp)
-                    .requiredWidth(125.dp)
-            )
+            Text(text = stringResource(id = R.string.world_cup))
         },
         backgroundColor = MaterialTheme.colors.primary
     )

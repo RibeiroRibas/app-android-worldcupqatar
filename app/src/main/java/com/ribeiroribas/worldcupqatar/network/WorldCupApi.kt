@@ -10,12 +10,12 @@ import javax.inject.Singleton
 @Singleton
 interface WorldCupApi {
 
-    @GET("qatar/{date}")
+    @GET("qatar/matches-by-date/{date}")
     suspend fun getMatchesByDate(@Path("date") date: LocalDate): MatchesByDate
 
-    @GET("qatar")
+    @GET("qatar/all-matches")
     suspend fun getMatchesGroupStage(): List<Match>
 
-    @GET("qatar/final/match")
+    @GET("qatar/final-match")
     suspend fun getFinalMatch(): Match
 }
