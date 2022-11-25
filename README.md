@@ -33,7 +33,7 @@ Aplicar meus estudos sobre Jetpack Compose - kit de ferramentas moderno recomend
 
 ## 📁 Acesso ao projeto
 
-- em construção.....
+- O app encontra-se disponível para download na loja da google. https://play.google.com/store/apps/details?id=com.ribeiroribas.worldcupqatar
 
 ## ✔️ Técnicas e Tecnologias utilizadas
 
